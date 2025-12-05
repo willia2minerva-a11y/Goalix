@@ -132,6 +132,21 @@ def main():
     while True:
         schedule.run_pending()
         time.sleep(60)
+def health():
+        return 'OK', 200
+    
+    return app
+
+# وشغل السيرفر
+if __name__ == "__main__":
+    # البوت الأساسي في thread منفصل
+    import threading
+    bot_thread = threading.Thread(target=main, daemon=True)
+    bot_thread.start()
+    
+    # سيرفر ويب بسيط للمنفذ
+    app = create_app()
+    app.run(host='0.0.0.0', port=8000, debug=False)
 
 if __name__ == "__main__":
     main()
